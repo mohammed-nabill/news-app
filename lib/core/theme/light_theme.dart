@@ -6,15 +6,7 @@ ThemeData lightTheme = ThemeData(
   colorScheme: ColorScheme.light(),
   brightness: Brightness.light,
 
-  // appBarTheme: AppBarTheme(
-  //   backgroundColor: const Color(0xFFF6F7F9),
-  //   foregroundColor: const Color(0xFF161F1B),
-  //   titleTextStyle: TextStyle(
-  //     fontWeight: FontWeight.w400,
-  //     fontSize: 20,
-  //     color: Color(0xFF161F1B),
-  //   ),
-  // ),
+  appBarTheme: AppBarTheme(backgroundColor: const Color(0xFFFFFFFF)),
   // switchTheme: SwitchThemeData(
   //   trackColor: WidgetStateProperty.resolveWith((states) {
   //     if (states.contains(WidgetState.selected)) {
@@ -41,15 +33,14 @@ ThemeData lightTheme = ThemeData(
   //     return 2;
   //   }),
   // ),
-  // elevatedButtonTheme: ElevatedButtonThemeData(
-  //   style: ButtonStyle(
-  //     backgroundColor: WidgetStateProperty.all(Color(0xFF15B86C)),
-  //     foregroundColor: WidgetStateProperty.all(Color(0xFFFFFCFC)),
-  //     textStyle: WidgetStateProperty.all(
-  //       TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-  //     ),
-  //   ),
-  // ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Color(0xFFC53030),
+      foregroundColor: Color(0xFFFFFCFC),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+      textStyle: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
+    ),
+  ),
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(foregroundColor: Color(0XffC53030)),
   ),

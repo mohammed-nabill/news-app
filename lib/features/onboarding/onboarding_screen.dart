@@ -1,14 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/features/onboarding/models/onboarding_model.dart';
 
-class OnboardingScreen extends StatelessWidget {
+class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
+
+  @override
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
+}
+
+class _OnboardingScreenState extends State<OnboardingScreen> {
+  int? currentIndex;
+  PageController controller = PageController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFFF5F5F5),
+        actions: [
+          if (currentIndex != 2)
+            Align(
+              alignment: AlignmentGeometry.centerRight,
+              child: TextButton(
+                onPressed: () {
+                  controller.animateToPage(
+                    OnboardingModel.onboardingList.length,
+                    duration: Duration(milliseconds: 400),
+                    curve: Curves.easeInOut,
+                  );
+                },
+                child: Text(
+                  "Skip",
+                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+                ),
+              ),
+            ),
+        ],
+      ),
       body: SafeArea(
         child: PageView.builder(
+          controller: controller,
+          onPageChanged: (index) {
+            setState(() {
+              currentIndex = index;
+            });
+          },
           itemCount: OnboardingModel.onboardingList.length,
           itemBuilder: (BuildContext context, int index) {
             final OnboardingModel model = OnboardingModel.onboardingList[index];
@@ -19,19 +55,6 @@ class OnboardingScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Align(
-                    alignment: AlignmentGeometry.centerRight,
-                    child: TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Skip",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
-                  ),
                   Padding(
                     padding: EdgeInsetsGeometry.fromLTRB(23, 24, 23, 24),
                     child: Image.asset(model.image),
@@ -55,24 +78,17 @@ class OnboardingScreen extends StatelessWidget {
                     ),
                   ),
                   Spacer(),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFFC53030),
-                        shape: BeveledRectangleBorder(),
-                      ),
-                      child: Text(
-                        "Next",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16,
-                          color: Color(0XFFFFFCFC),
-                        ),
-                      ),
+                  ElevatedButton(
+                    onPressed: () {
+                      controller.nextPage(
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: Size(MediaQuery.of(context).size.width, 52),
                     ),
+                    child: Text("Next"),
                   ),
                 ],
               ),
