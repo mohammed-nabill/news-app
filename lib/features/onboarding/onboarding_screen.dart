@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/features/auth/login_screen.dart';
 import 'package:news_app/features/onboarding/controller/onboarding_controller.dart';
 import 'package:news_app/features/onboarding/models/onboarding_model.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../core/data_source/local_data/preferences_manager.dart';
+
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
+
+  _onFinish(BuildContext context) async {
+    await PreferencesManager().setBool("onboarding_complete", true);
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => LoginScreen()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,28 +122,31 @@ class OnboardingScreen extends StatelessWidget {
                         },
                   ),
                   SizedBox(height: 100),
-                  ElevatedButton(
-                    onPressed: () {
-                      controller.pageController.nextPage(
-                        duration: Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: Size(MediaQuery.of(context).size.width, 52),
-                    ),
-                    child: Consumer<OnboardingController>(
-                      builder:
-                          (
-                            BuildContext context,
-                            OnboardingController value,
-                            _,
-                          ) {
-                            return Text(
+                  Consumer<OnboardingController>(
+                    builder:
+                        (BuildContext context, OnboardingController value, _) {
+                          return ElevatedButton(
+                            onPressed: () {
+                              if (!value.lastPage) {
+                                controller.pageController.nextPage(
+                                  duration: Duration(milliseconds: 300),
+                                  curve: Curves.easeInOut,
+                                );
+                              } else {
+                                _onFinish(context);
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              fixedSize: Size(
+                                MediaQuery.of(context).size.width,
+                                52,
+                              ),
+                            ),
+                            child: Text(
                               value.lastPage ? "Get Started" : "Next",
-                            );
-                          },
-                    ),
+                            ),
+                          );
+                        },
                   ),
                 ],
               ),

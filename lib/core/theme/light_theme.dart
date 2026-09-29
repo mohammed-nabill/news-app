@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'light_color.dart';
+
 ThemeData lightTheme = ThemeData(
   scaffoldBackgroundColor: const Color(0xFFF5F5F5),
   useMaterial3: true,
   colorScheme: ColorScheme.light(),
   brightness: Brightness.light,
+  primaryColor: LightColor.primaryColor,
 
   appBarTheme: AppBarTheme(backgroundColor: const Color(0xFFFFFFFF)),
   // switchTheme: SwitchThemeData(
@@ -35,14 +38,14 @@ ThemeData lightTheme = ThemeData(
   // ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: Color(0xFFC53030),
+      backgroundColor: LightColor.primaryColor,
       foregroundColor: Color(0xFFFFFCFC),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
       textStyle: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
     ),
   ),
   textButtonTheme: TextButtonThemeData(
-    style: TextButton.styleFrom(foregroundColor: Color(0XffC53030)),
+    style: TextButton.styleFrom(foregroundColor: LightColor.primaryColor),
   ),
 
   // floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -100,31 +103,31 @@ ThemeData lightTheme = ThemeData(
   //   ),
   //   titleLarge: TextStyle(color: Colors.black, fontSize: 24),
   // ),
-  // inputDecorationTheme: InputDecorationThemeData(
-  //   filled: true,
-  //   fillColor: Color(0xFFFFFFFF),
-  //   border: OutlineInputBorder(
-  //     borderRadius: BorderRadius.circular(16),
-  //     borderSide: BorderSide(color: Color(0xFFD1DAD6), width: 0.5),
-  //   ),
-  //   focusedBorder: OutlineInputBorder(
-  //     borderRadius: BorderRadius.circular(16),
-  //     borderSide: BorderSide(color: Color(0xFFD1DAD6), width: 0.5),
-  //   ),
-  //   errorBorder: OutlineInputBorder(
-  //     borderRadius: BorderRadius.circular(16),
-  //     borderSide: BorderSide(color: Colors.red, width: 0.5),
-  //   ),
-  //   enabledBorder: OutlineInputBorder(
-  //     borderRadius: BorderRadius.circular(16),
-  //     borderSide: BorderSide(color: Color(0xFFD1DAD6), width: 0.5),
-  //   ),
-  //   hintStyle: TextStyle(
-  //     color: Color(0xFF9E9E9E),
-  //     fontSize: 16,
-  //     fontWeight: FontWeight.w400,
-  //   ),
-  // ),
+  inputDecorationTheme: InputDecorationThemeData(
+    filled: true,
+    fillColor: Color(0xFFFFFFFF),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.zero,
+      borderSide: BorderSide(color: Color(0xFFD1DAD6), width: 0.5),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.zero,
+      borderSide: BorderSide(color: Color(0xFFD1DAD6), width: 0.5),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.zero,
+      borderSide: BorderSide(color: Colors.red, width: 0.5),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.zero,
+      borderSide: BorderSide(color: Color(0xFFD1DAD6), width: 0.5),
+    ),
+    hintStyle: TextStyle(
+      color: Color(0xFF9E9E9E),
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+    ),
+  ),
   // checkboxTheme: CheckboxThemeData(
   //   shape: RoundedRectangleBorder(
   //     borderRadius: BorderRadiusGeometry.circular(4),
@@ -146,12 +149,7 @@ ThemeData lightTheme = ThemeData(
   //   selectionHandleColor: Colors.lightBlueAccent,
   // ),
   // dividerTheme: DividerThemeData(color: Color(0xFFD1DAD6)),
-  // bottomNavigationBarTheme: BottomNavigationBarThemeData(
-  //   backgroundColor: const Color(0xFFF6F7F9),
-  //   type: BottomNavigationBarType.fixed,
-  //   unselectedItemColor: Color(0xFF3A4640),
-  //   selectedItemColor: Color(0xFF14A662),
-  // ),
+
   // popupMenuTheme: PopupMenuThemeData(
   //   color: Color(0xFFF6F7F9),
   //   elevation: 2,
@@ -160,4 +158,10 @@ ThemeData lightTheme = ThemeData(
   //   ),
   //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
   // ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    backgroundColor: const Color(0xFFF6F7F9),
+    type: BottomNavigationBarType.fixed,
+    unselectedItemColor: Color(0xFF363636),
+    selectedItemColor: LightColor.primaryColor,
+  ),
 );
