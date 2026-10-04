@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/core/enums/request_status_enum.dart';
 import 'package:news_app/features/home/home_controller.dart';
 import 'package:provider/provider.dart';
 
@@ -59,35 +60,53 @@ class TrendingNews extends StatelessWidget {
                     child: Consumer<HomeController>(
                       builder:
                           (BuildContext context, HomeController controller, _) {
-                            return ListView.builder(
-                              itemCount: controller.newsEverythingList.length,
-                              scrollDirection: Axis.horizontal,
-
-                              itemBuilder: (context, index) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    child: SizedBox(
-                                      child: Stack(
-                                        children: [
-                                          if (controller
-                                                  .newsEverythingList[index]
-                                                  .urlToImage !=
-                                              null)
-                                            Image.network(
-                                              controller
-                                                  .newsEverythingList[index]
-                                                  .urlToImage!,
-                                              fit: BoxFit.fill,
-                                            ),
-                                        ],
-                                      ),
-                                    ),
+                            switch (controller.everythingStatus) {
+                              case RequestStatusEnum.loading:
+                                return Center(
+                                  child: CircularProgressIndicator(
+                                    color: Colors.white,
                                   ),
                                 );
-                              },
-                            );
+
+                              case RequestStatusEnum.error:
+                                return Center(
+                                  child: Text(controller.errorMessage!),
+                                );
+
+                              case RequestStatusEnum.loaded:
+                                return ListView.builder(
+                                  itemCount:
+                                      controller.newsEverythingList.length,
+                                  scrollDirection: Axis.horizontal,
+
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(
+                                          12.0,
+                                        ),
+                                        child: SizedBox(
+                                          child: Stack(
+                                            children: [
+                                              if (controller
+                                                      .newsEverythingList[index]
+                                                      .urlToImage !=
+                                                  null)
+                                                Image.network(
+                                                  controller
+                                                      .newsEverythingList[index]
+                                                      .urlToImage!,
+                                                  fit: BoxFit.fill,
+                                                ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                            }
                           },
                     ),
                   ),

@@ -15,11 +15,7 @@ class HomeScreen extends StatelessWidget {
         return Scaffold(
           body: Consumer<HomeController>(
             builder: (BuildContext context, HomeController controller, _) {
-              return (controller.errorMessage?.isNotEmpty ?? false)
-                  ? Center(child: Text(controller.errorMessage!))
-                  : controller.everythingLoading
-                  ? Center(child: CircularProgressIndicator())
-                  : Column(children: [TrendingNews()]);
+              return Column(children: [TrendingNews()]);
             },
           ),
         );

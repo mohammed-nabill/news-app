@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/data_source/remote_data/api_config.dart';
 import '../../core/data_source/remote_data/api_services.dart';
+import '../../core/enums/request_status_enum.dart';
 import 'models/news_article_model.dart';
 
 class HomeController with ChangeNotifier {
@@ -9,8 +10,8 @@ class HomeController with ChangeNotifier {
   List<NewsArticleModel> newsEverythingList = [];
   final ApiServices apiServices = ApiServices();
   bool topHeadlineLoading = true;
-  bool everythingLoading = true;
   String? errorMessage;
+  RequestStatusEnum everythingStatus = RequestStatusEnum.loading;
 
   init() {
     _getTopHeadline();
@@ -47,10 +48,10 @@ class HomeController with ChangeNotifier {
       newsEverythingList = (result["articles"] as List)
           .map((e) => NewsArticleModel.fromMap(e))
           .toList();
-      everythingLoading = false;
+      everythingStatus = RequestStatusEnum.loaded;
       errorMessage = null;
     } catch (e) {
-      everythingLoading = false;
+      everythingStatus = RequestStatusEnum.error;
       errorMessage = e.toString();
     }
   }
