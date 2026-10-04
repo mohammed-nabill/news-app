@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:news_app/features/home/home_controller.dart';
 import 'package:provider/provider.dart';
 
+import 'components/trending_news.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -12,25 +14,12 @@ class HomeScreen extends StatelessWidget {
       builder: (context, child) {
         return Scaffold(
           body: Consumer<HomeController>(
-            builder: (BuildContext context, HomeController value, _) {
-              return (value.errorMessage?.isNotEmpty ?? false)
-                  ? Center(child: Text(value.errorMessage!))
-                  : value.everythingLoading
+            builder: (BuildContext context, HomeController controller, _) {
+              return (controller.errorMessage?.isNotEmpty ?? false)
+                  ? Center(child: Text(controller.errorMessage!))
+                  : controller.everythingLoading
                   ? Center(child: CircularProgressIndicator())
-                  : Column(
-                      children: [
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount: value.newsTopHeadlineList.length,
-                            itemBuilder: (context, index) {
-                              return Text(
-                                value.newsTopHeadlineList[index].title,
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    );
+                  : Column(children: [TrendingNews()]);
             },
           ),
         );

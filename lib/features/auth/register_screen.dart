@@ -9,6 +9,12 @@ class RegisterScreen extends StatelessWidget {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey();
+
+  bool isValidEmail(String email) {
+    final emailRegex = RegExp(r'^[\w\.-]+@[\w\.-]+\.\w+$');
+    return emailRegex.hasMatch(email);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,67 +30,101 @@ class RegisterScreen extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Center(child: Image.asset("assets/images/logo.png", height: 45)),
-              SizedBox(height: 24),
-              Text(
-                "Welcome to Newts",
-                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
-              ),
-              SizedBox(height: 16),
-              CustomTextFormField(
-                hintText: 'usama@gmail.com',
-                controller: emailController,
-                title: 'Email',
-              ),
-              SizedBox(height: 12),
-              CustomTextFormField(
-                hintText: '*************',
-                controller: passwordController,
-                title: 'Password',
-                obscureText: true,
-              ),
-              SizedBox(height: 12),
-              CustomTextFormField(
-                hintText: '*************',
-                controller: confirmPasswordController,
-                title: 'Confirm Password',
-                obscureText: true,
-              ),
-              SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                height: 48,
-                child: ElevatedButton(onPressed: () {}, child: Text("Sign Up")),
-              ),
-              SizedBox(height: 35),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    "Have an account ?",
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-                  ),
-                  SizedBox(width: 8),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Center(
+                  child: Image.asset("assets/images/logo.png", height: 45),
+                ),
+                SizedBox(height: 24),
+                Text(
+                  "Welcome to Newts",
+                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
+                ),
+                SizedBox(height: 16),
+                CustomTextFormField(
+                  hintText: 'usama@gmail.com',
+                  controller: emailController,
+                  title: 'Email',
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please Enter Email";
+                    } else {
+                      if (!isValidEmail(value)) {
+                        return "Please Enter Valid Email";
+                      }
+                    }
+                  },
+                ),
+                SizedBox(height: 12),
+                CustomTextFormField(
+                  hintText: '*************',
+                  controller: passwordController,
+                  title: 'Password',
+                  obscureText: true,
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please Enter Password";
+                    }
+                  },
+                ),
+                SizedBox(height: 12),
+                CustomTextFormField(
+                  hintText: '*************',
+                  controller: confirmPasswordController,
+                  title: 'Confirm Password',
+                  obscureText: true,
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please Enter Password";
+                    }
+                  },
+                ),
+                SizedBox(height: 20),
+                SizedBox(
+                  width: double.infinity,
+                  height: 48,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        Navigator.pop(context);
+                      }
                     },
-                    child: Text(
-                      "Sign In",
+                    child: Text("Sign Up"),
+                  ),
+                ),
+                SizedBox(height: 35),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "Have an account ?",
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
-                        color: Theme.of(context).primaryColor,
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                    SizedBox(width: 8),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        "Sign In",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

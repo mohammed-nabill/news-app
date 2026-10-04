@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/features/auth/register_screen.dart';
+import 'package:news_app/features/home/home_screen.dart';
 
 import '../../core/widgets/custom_text_form_field.dart';
 
@@ -14,12 +15,12 @@ class LoginScreen extends StatelessWidget {
     return emailRegex.hasMatch(email);
   }
 
-  bool isValidPassword(String password) {
-    final passwordRegex = RegExp(
-      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$',
-    );
-    return passwordRegex.hasMatch(password);
-  }
+  // bool isValidPassword(String password) {
+  //   final passwordRegex = RegExp(
+  //     r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$',
+  //   );
+  //   return passwordRegex.hasMatch(password);
+  // }
 
   final GlobalKey<FormState> _formKey = GlobalKey();
 
@@ -90,7 +91,12 @@ class LoginScreen extends StatelessWidget {
                   height: 48,
                   child: ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
+                      if (_formKey.currentState!.validate()) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                        );
+                      }
                     },
                     child: Text("Sign In"),
                   ),

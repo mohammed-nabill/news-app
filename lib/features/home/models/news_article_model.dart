@@ -7,7 +7,7 @@ class NewsArticleModel {
 
   final String url;
 
-  final String urlToImage;
+  final String? urlToImage;
 
   final String publishedAt;
 
@@ -41,7 +41,7 @@ class NewsArticleModel {
       title: map['title'] ?? "",
       description: map['description'] ?? "",
       url: map['url'] ?? "",
-      urlToImage: map['urlToImage'] ?? "",
+      urlToImage: map['urlToImage'],
       publishedAt: map['publishedAt'] ?? "",
       content: map['content'] ?? "",
     );

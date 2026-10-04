@@ -54,29 +54,30 @@ ThemeData lightTheme = ThemeData(
   //   extendedTextStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
   // ),
   //
-  // textTheme: TextTheme(
-  //   displayMedium: TextStyle(
-  //     fontWeight: FontWeight.w400,
-  //     fontSize: 28,
-  //     color: Color(0xFF161F1B),
-  //   ),
-  //   displaySmall: TextStyle(
-  //     fontWeight: FontWeight.w400,
-  //     fontSize: 24,
-  //     color: Color(0xFF161F1B),
-  //   ),
-  //   displayLarge: TextStyle(
-  //     color: Color(0xFF161F1B),
-  //     fontSize: 32,
-  //     fontWeight: FontWeight.w400,
-  //   ),
-  //   bodyLarge: TextStyle(),
-  //   bodyMedium: TextStyle(
-  //     color: Color(0xFF161F1B),
-  //     fontSize: 16,
-  //     fontWeight: FontWeight.w400,
-  //   ),
-  //   bodySmall: TextStyle(),
+  textTheme: TextTheme(
+    //   displaySmall: TextStyle(
+    //     fontWeight: FontWeight.w400,
+    //     fontSize: 24,
+    //     color: Color(0xFF161F1B),
+    //   ),
+    //   displayLarge: TextStyle(
+    //     color: Color(0xFF161F1B),
+    //     fontSize: 32,
+    //     fontWeight: FontWeight.w400,
+    //   ),
+    bodyLarge: TextStyle(),
+    bodyMedium: TextStyle(
+      color: Color(0xFFFFFCFC),
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+    ),
+
+    bodySmall: TextStyle(
+      color: Color(0xFFFFFCFC),
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+    ),
+  ),
   //   labelMedium: TextStyle(
   //     color: Color(0xFF161F1B),
   //     fontSize: 16,
