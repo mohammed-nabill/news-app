@@ -19,11 +19,11 @@ class HomeController with ChangeNotifier {
     _getEverything();
   }
 
-  Future<void> _getTopHeadline() async {
+  Future<void> _getTopHeadline({String? category}) async {
     try {
       Map<String, dynamic> result = await apiServices.get(
         ApiConfig.topHeadlines,
-        params: {"country": "us"},
+        params: {"country": "us", "category": category},
       );
 
       newsTopHeadlineList = (result["articles"] as List)
@@ -60,6 +60,7 @@ class HomeController with ChangeNotifier {
 
   void updateSelectedCategory(String category) {
     selectedCategory = category;
+    _getTopHeadline(category: selectedCategory);
     notifyListeners();
   }
 }
