@@ -69,7 +69,7 @@ ThemeData lightTheme = ThemeData(
     bodyMedium: TextStyle(
       color: Color(0xFFFFFCFC),
       fontSize: 16,
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w400,
     ),
 
     bodySmall: TextStyle(
@@ -77,26 +77,25 @@ ThemeData lightTheme = ThemeData(
       fontSize: 14,
       fontWeight: FontWeight.w400,
     ),
+
+    labelMedium: TextStyle(
+      color: Color(0xFFFFFCFC),
+      fontSize: 14,
+      fontWeight: FontWeight.w700,
+    ),
+
+    //   titleSmall: TextStyle(
+    //     color: Color(0xFF3A4640),
+    //     fontSize: 14,
+    //     fontWeight: FontWeight.w400,
+    //   ),
+    //   // for done task
+    titleMedium: TextStyle(
+      color: Color(0xFF141414),
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+    ),
   ),
-  //   labelMedium: TextStyle(
-  //     color: Color(0xFF161F1B),
-  //     fontSize: 16,
-  //     fontWeight: FontWeight.w400,
-  //   ),
-  //   titleSmall: TextStyle(
-  //     color: Color(0xFF3A4640),
-  //     fontSize: 14,
-  //     fontWeight: FontWeight.w400,
-  //   ),
-  //   // for done task
-  //   titleMedium: TextStyle(
-  //     color: Color(0xFF6A6A6A),
-  //     fontSize: 16,
-  //     fontWeight: FontWeight.w400,
-  //     decoration: TextDecoration.lineThrough,
-  //     decorationColor: Color(0XFF49454F),
-  //     overflow: TextOverflow.ellipsis,
-  //   ),
   //   labelLarge: TextStyle(
   //     color: Color(0xFF161F1B),
   //     fontSize: 20,

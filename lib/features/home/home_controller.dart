@@ -12,6 +12,7 @@ class HomeController with ChangeNotifier {
   bool topHeadlineLoading = true;
   String? errorMessage;
   RequestStatusEnum everythingStatus = RequestStatusEnum.loading;
+  String? selectedCategory;
 
   init() {
     _getTopHeadline();
@@ -54,5 +55,11 @@ class HomeController with ChangeNotifier {
       everythingStatus = RequestStatusEnum.error;
       errorMessage = e.toString();
     }
+    notifyListeners();
+  }
+
+  void updateSelectedCategory(String category) {
+    selectedCategory = category;
+    notifyListeners();
   }
 }

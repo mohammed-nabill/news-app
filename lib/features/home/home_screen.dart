@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/features/home/components/view_all.dart';
 import 'package:news_app/features/home/home_controller.dart';
 import 'package:provider/provider.dart';
 
+import 'components/categories_list.dart';
 import 'components/trending_news.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -15,7 +17,17 @@ class HomeScreen extends StatelessWidget {
         return Scaffold(
           body: Consumer<HomeController>(
             builder: (BuildContext context, HomeController controller, _) {
-              return Column(children: [TrendingNews()]);
+              return Column(
+                children: [
+                  TrendingNews(),
+                  ViewAll(
+                    title: "Categories",
+                    textColorBlack: true,
+                    onTap: () {},
+                  ),
+                  CategoriesList(),
+                ],
+              );
             },
           ),
         );
