@@ -84,11 +84,11 @@ ThemeData lightTheme = ThemeData(
       fontWeight: FontWeight.w700,
     ),
 
-    //   titleSmall: TextStyle(
-    //     color: Color(0xFF3A4640),
-    //     fontSize: 14,
-    //     fontWeight: FontWeight.w400,
-    //   ),
+    titleSmall: TextStyle(
+      color: Color(0xFF141414),
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+    ),
     //   // for done task
     titleMedium: TextStyle(
       color: Color(0xFF141414),
