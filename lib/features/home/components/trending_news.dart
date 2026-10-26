@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/enums/request_status_enum.dart';
 import 'package:news_app/core/extensions/date_time_extension.dart';
+import 'package:news_app/features/home/components/trending_news_shimmer.dart';
 import 'package:news_app/features/home/components/view_all.dart';
 import 'package:news_app/features/home/home_controller.dart';
 import 'package:provider/provider.dart';
+
+import '../../../core/widgets/custome_cached_network_image.dart';
 
 class TrendingNews extends StatelessWidget {
   const TrendingNews({super.key});
@@ -41,11 +44,7 @@ class TrendingNews extends StatelessWidget {
                           (BuildContext context, HomeController controller, _) {
                             switch (controller.everythingStatus) {
                               case RequestStatusEnum.loading:
-                                return Center(
-                                  child: CircularProgressIndicator(
-                                    color: Colors.white,
-                                  ),
-                                );
+                                return TrendingNewsShimmer();
 
                               case RequestStatusEnum.error:
                                 return Center(
@@ -75,9 +74,8 @@ class TrendingNews extends StatelessWidget {
                                           child: Stack(
                                             children: [
                                               if (model.urlToImage != null)
-                                                Image.network(
-                                                  model.urlToImage!,
-                                                  fit: BoxFit.cover,
+                                                CustomCachedNetworkImage(
+                                                  imagePath: model.urlToImage!,
                                                   width: 240,
                                                   height: 150,
                                                 ),
