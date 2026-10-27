@@ -9,7 +9,14 @@ ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
   primaryColor: LightColor.primaryColor,
 
-  appBarTheme: AppBarTheme(backgroundColor: const Color(0xFFFFFFFF)),
+  appBarTheme: AppBarTheme(
+    backgroundColor: const Color(0xFFFFFFFF),
+    titleTextStyle: TextStyle(
+      fontWeight: FontWeight.w700,
+      fontSize: 16,
+      color: Color(0xFF141414),
+    ),
+  ),
   // switchTheme: SwitchThemeData(
   //   trackColor: WidgetStateProperty.resolveWith((states) {
   //     if (states.contains(WidgetState.selected)) {

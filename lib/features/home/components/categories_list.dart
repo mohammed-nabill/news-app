@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/features/home/categories_screen.dart';
 import 'package:news_app/features/home/components/view_all.dart';
 import 'package:news_app/features/home/home_controller.dart';
 import 'package:provider/provider.dart';
@@ -9,21 +10,37 @@ class CategoriesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Column(
-        children: [
-          ViewAll(title: "Categories", textColorBlack: true, onTap: () {}),
-          Padding(
-            padding: const EdgeInsets.only(left: 16, bottom: 16, top: 4),
-            child: SizedBox(
-              height: 40,
-              child: Consumer<HomeController>(
-                builder:
-                    (
-                      BuildContext context,
-                      HomeController controller,
-                      Widget? child,
-                    ) {
-                      return ListView.separated(
+      child: Consumer<HomeController>(
+        builder:
+            (BuildContext context, HomeController controller, Widget? child) {
+              return Column(
+                children: [
+                  ViewAll(
+                    title: "Categories",
+                    textColorBlack: true,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return ChangeNotifierProvider.value(
+                              value: controller,
+                              child: CategoriesScreen(),
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 16,
+                      bottom: 16,
+                      top: 4,
+                    ),
+                    child: SizedBox(
+                      height: 40,
+                      child: ListView.separated(
                         itemCount: categories.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
@@ -61,12 +78,12 @@ class CategoriesList extends StatelessWidget {
                         separatorBuilder: (BuildContext context, int index) {
                           return SizedBox(width: 12);
                         },
-                      );
-                    },
-              ),
-            ),
-          ),
-        ],
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
       ),
     );
   }
