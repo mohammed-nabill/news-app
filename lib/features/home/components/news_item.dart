@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:news_app/core/extensions/date_time_extension.dart';
 
+import '../../../core/constants/app_sizes.dart';
 import '../../../core/widgets/custome_cached_network_image.dart';
 import '../models/news_article_model.dart';
 
@@ -14,7 +15,7 @@ class NewsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: AppSizes.w16),
       child: Column(
         children: [
           Row(
@@ -22,13 +23,13 @@ class NewsItem extends StatelessWidget {
             children: [
               model.urlToImage != null
                   ? ClipRRect(
-                      borderRadius: BorderRadius.circular(4),
+                      borderRadius: BorderRadius.circular(AppSizes.r4),
                       child: CustomCachedNetworkImage(
                         imagePath: model.urlToImage!,
                       ),
                     )
-                  : SizedBox(width: 140, height: 70),
-              const SizedBox(width: 8),
+                  : SizedBox(width: AppSizes.w140, height: AppSizes.h70),
+              SizedBox(width: AppSizes.w8),
 
               Expanded(
                 child: Column(
@@ -41,19 +42,19 @@ class NewsItem extends StatelessWidget {
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
 
-                    const SizedBox(height: 2),
+                    SizedBox(height: AppSizes.h2),
 
                     Row(
                       children: [
                         if (model.urlToImage != null)
                           CircleAvatar(
-                            radius: 12,
+                            radius: AppSizes.r12,
                             backgroundImage: NetworkImage(
                               model.urlToImage ?? "",
                             ),
                           ),
 
-                        const SizedBox(width: 4),
+                        SizedBox(width: AppSizes.w4),
                         Expanded(
                           child: Text(
                             model.author.substring(
@@ -65,7 +66,7 @@ class NewsItem extends StatelessWidget {
                             style: Theme.of(context).textTheme.titleSmall,
                           ),
                         ),
-                        const SizedBox(width: 8),
+                        SizedBox(width: AppSizes.w8),
                         Text(
                           model.publishedAt.formatDate(),
                           style: Theme.of(context).textTheme.titleSmall!
@@ -80,7 +81,7 @@ class NewsItem extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 12),
+          SizedBox(height: AppSizes.h12),
         ],
       ),
     );

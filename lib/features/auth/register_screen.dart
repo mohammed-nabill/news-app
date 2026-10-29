@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/constants/app_sizes.dart';
 import '../../core/widgets/custom_text_form_field.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -29,7 +30,7 @@ class RegisterScreen extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(AppSizes.w16),
           child: Form(
             key: _formKey,
             child: Column(
@@ -37,14 +38,20 @@ class RegisterScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Center(
-                  child: Image.asset("assets/images/logo.png", height: 45),
+                  child: Image.asset(
+                    "assets/images/logo.png",
+                    height: AppSizes.h45,
+                  ),
                 ),
-                SizedBox(height: 24),
+                SizedBox(height: AppSizes.h24),
                 Text(
                   "Welcome to Newts",
-                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: AppSizes.sp20,
+                  ),
                 ),
-                SizedBox(height: 16),
+                SizedBox(height: AppSizes.h16),
                 CustomTextFormField(
                   hintText: 'usama@gmail.com',
                   controller: emailController,
@@ -59,7 +66,7 @@ class RegisterScreen extends StatelessWidget {
                     }
                   },
                 ),
-                SizedBox(height: 12),
+                SizedBox(height: AppSizes.h12),
                 CustomTextFormField(
                   hintText: '*************',
                   controller: passwordController,
@@ -71,7 +78,7 @@ class RegisterScreen extends StatelessWidget {
                     }
                   },
                 ),
-                SizedBox(height: 12),
+                SizedBox(height: AppSizes.h12),
                 CustomTextFormField(
                   hintText: '*************',
                   controller: confirmPasswordController,
@@ -83,10 +90,10 @@ class RegisterScreen extends StatelessWidget {
                     }
                   },
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: AppSizes.h20),
                 SizedBox(
                   width: double.infinity,
-                  height: 48,
+                  height: AppSizes.h48,
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
@@ -96,18 +103,18 @@ class RegisterScreen extends StatelessWidget {
                     child: Text("Sign Up"),
                   ),
                 ),
-                SizedBox(height: 35),
+                SizedBox(height: AppSizes.h35),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
                       "Have an account ?",
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: AppSizes.sp14,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    SizedBox(width: 8),
+                    SizedBox(width: AppSizes.w8),
                     GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
@@ -115,7 +122,7 @@ class RegisterScreen extends StatelessWidget {
                       child: Text(
                         "Sign In",
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: AppSizes.sp14,
                           fontWeight: FontWeight.w400,
                           color: Theme.of(context).primaryColor,
                         ),

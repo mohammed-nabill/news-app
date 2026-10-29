@@ -6,6 +6,7 @@ import 'package:news_app/features/home/components/view_all.dart';
 import 'package:news_app/features/home/home_controller.dart';
 import 'package:provider/provider.dart';
 
+import '../../../core/constants/app_sizes.dart';
 import '../../../core/widgets/custome_cached_network_image.dart';
 
 class TrendingNews extends StatelessWidget {
@@ -15,24 +16,24 @@ class TrendingNews extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: SizedBox(
-        height: 320,
+        height: AppSizes.h320,
         child: Stack(
           children: [
             Image.asset(
               width: double.infinity,
-              height: 270,
+              height: AppSizes.h270,
               "assets/images/home_background.png",
               fit: BoxFit.cover,
             ),
             Positioned.fill(
-              top: 65.0,
+              top: AppSizes.h65,
               child: Column(
                 children: <Widget>[
                   Text(
                     "NEWST",
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
-                      fontSize: 30,
+                      fontSize: AppSizes.sp30,
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
@@ -53,7 +54,7 @@ class TrendingNews extends StatelessWidget {
 
                               case RequestStatusEnum.loaded:
                                 return ListView.builder(
-                                  padding: const EdgeInsets.only(left: 8.0),
+                                  padding: EdgeInsets.only(left: AppSizes.w8),
                                   itemCount: controller.newsEverythingList
                                       .take(6)
                                       .length,
@@ -63,21 +64,21 @@ class TrendingNews extends StatelessWidget {
                                     final model =
                                         controller.newsEverythingList[index];
                                     return Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: EdgeInsets.all(AppSizes.w8),
                                       child: SizedBox(
-                                        height: 140,
-                                        width: 240,
+                                        height: AppSizes.h140,
+                                        width: AppSizes.w240,
                                         child: ClipRRect(
                                           borderRadius: BorderRadius.circular(
-                                            12.0,
+                                            AppSizes.r12,
                                           ),
                                           child: Stack(
                                             children: [
                                               if (model.urlToImage != null)
                                                 CustomCachedNetworkImage(
                                                   imagePath: model.urlToImage!,
-                                                  width: 240,
-                                                  height: 150,
+                                                  width: AppSizes.w240,
+                                                  height: AppSizes.h150,
                                                 ),
                                               Positioned.fill(
                                                 child: Container(
@@ -100,10 +101,10 @@ class TrendingNews extends StatelessWidget {
                                                 ),
                                               ),
                                               Positioned(
-                                                left: 10,
-                                                right: 10,
-                                                top: 70,
-                                                bottom: 12,
+                                                left: AppSizes.w10,
+                                                right: AppSizes.w10,
+                                                top: AppSizes.h70,
+                                                bottom: AppSizes.h12,
                                                 child: Column(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
@@ -117,7 +118,9 @@ class TrendingNews extends StatelessWidget {
                                                         context,
                                                       ).textTheme.labelMedium,
                                                     ),
-                                                    SizedBox(height: 4),
+                                                    SizedBox(
+                                                      height: AppSizes.h4,
+                                                    ),
                                                     Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
@@ -129,9 +132,11 @@ class TrendingNews extends StatelessWidget {
                                                                 model.urlToImage
                                                                     .toString(),
                                                               ),
-                                                          radius: 12,
+                                                          radius: AppSizes.r12,
                                                         ),
-                                                        SizedBox(width: 4),
+                                                        SizedBox(
+                                                          width: AppSizes.w4,
+                                                        ),
                                                         Expanded(
                                                           child: Text(
                                                             maxLines: 1,

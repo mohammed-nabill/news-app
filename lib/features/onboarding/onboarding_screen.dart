@@ -5,6 +5,7 @@ import 'package:news_app/features/onboarding/models/onboarding_model.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../core/constants/app_sizes.dart';
 import '../../core/data_source/local_data/preferences_manager.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -46,7 +47,7 @@ class OnboardingScreen extends StatelessWidget {
                               "Skip",
                               style: TextStyle(
                                 fontWeight: FontWeight.w400,
-                                fontSize: 14,
+                                fontSize: AppSizes.sp14,
                               ),
                             ),
                           ),
@@ -59,8 +60,8 @@ class OnboardingScreen extends StatelessWidget {
           body: SafeArea(
             child: Padding(
               padding: EdgeInsetsGeometry.symmetric(
-                horizontal: 16,
-                vertical: 20,
+                horizontal: AppSizes.w16,
+                vertical: AppSizes.h20,
               ),
               child: Column(
                 children: [
@@ -78,10 +79,10 @@ class OnboardingScreen extends StatelessWidget {
                           children: [
                             Padding(
                               padding: EdgeInsetsGeometry.fromLTRB(
-                                23,
-                                24,
-                                23,
-                                24,
+                                AppSizes.w23,
+                                AppSizes.h24,
+                                AppSizes.w23,
+                                AppSizes.h24,
                               ),
                               child: Image.asset(model.image),
                             ),
@@ -89,17 +90,17 @@ class OnboardingScreen extends StatelessWidget {
                               model.title,
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
-                                fontSize: 20,
+                                fontSize: AppSizes.sp20,
                                 color: Color(0Xff4E4B66),
                               ),
                             ),
-                            SizedBox(height: 12),
+                            SizedBox(height: AppSizes.h12),
                             Text(
                               textAlign: TextAlign.center,
                               model.description,
                               style: TextStyle(
                                 fontWeight: FontWeight.w400,
-                                fontSize: 16,
+                                fontSize: AppSizes.sp16,
                                 color: Color(0Xff6E7191),
                               ),
                             ),
@@ -108,7 +109,7 @@ class OnboardingScreen extends StatelessWidget {
                       },
                     ),
                   ),
-                  SizedBox(height: 24),
+                  SizedBox(height: AppSizes.h24),
                   Consumer<OnboardingController>(
                     builder:
                         (BuildContext context, OnboardingController value, _) {
@@ -121,7 +122,7 @@ class OnboardingScreen extends StatelessWidget {
                           );
                         },
                   ),
-                  SizedBox(height: 100),
+                  SizedBox(height: AppSizes.h100),
                   Consumer<OnboardingController>(
                     builder:
                         (BuildContext context, OnboardingController value, _) {
@@ -136,12 +137,7 @@ class OnboardingScreen extends StatelessWidget {
                                 _onFinish(context);
                               }
                             },
-                            style: ElevatedButton.styleFrom(
-                              fixedSize: Size(
-                                MediaQuery.of(context).size.width,
-                                52,
-                              ),
-                            ),
+
                             child: Text(
                               value.lastPage ? "Get Started" : "Next",
                             ),

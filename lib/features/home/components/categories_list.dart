@@ -4,6 +4,8 @@ import 'package:news_app/features/home/components/view_all.dart';
 import 'package:news_app/features/home/home_controller.dart';
 import 'package:provider/provider.dart';
 
+import '../../../core/constants/app_sizes.dart';
+
 class CategoriesList extends StatelessWidget {
   const CategoriesList({super.key});
 
@@ -33,13 +35,13 @@ class CategoriesList extends StatelessWidget {
                     },
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left: 16,
-                      bottom: 16,
-                      top: 4,
+                    padding: EdgeInsets.only(
+                      left: AppSizes.w16,
+                      bottom: AppSizes.h16,
+                      top: AppSizes.h4,
                     ),
                     child: SizedBox(
-                      height: 40,
+                      height: AppSizes.h40,
                       child: ListView.separated(
                         itemCount: categories.length,
                         scrollDirection: Axis.horizontal,
@@ -64,9 +66,9 @@ class CategoriesList extends StatelessWidget {
                                   ),
                                   if (controller.selectedCategory ==
                                       categories[index]) ...[
-                                    SizedBox(height: 6),
+                                    SizedBox(height: AppSizes.h6),
                                     Container(
-                                      height: 2,
+                                      height: AppSizes.h2,
                                       color: Theme.of(context).primaryColor,
                                     ),
                                   ],
@@ -76,7 +78,7 @@ class CategoriesList extends StatelessWidget {
                           );
                         },
                         separatorBuilder: (BuildContext context, int index) {
-                          return SizedBox(width: 12);
+                          return SizedBox(width: AppSizes.w12);
                         },
                       ),
                     ),

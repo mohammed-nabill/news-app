@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../constants/app_sizes.dart';
 import 'light_color.dart';
 
 ThemeData lightTheme = ThemeData(
@@ -13,7 +14,7 @@ ThemeData lightTheme = ThemeData(
     backgroundColor: const Color(0xFFFFFFFF),
     titleTextStyle: TextStyle(
       fontWeight: FontWeight.w700,
-      fontSize: 16,
+      fontSize: AppSizes.sp16,
       color: Color(0xFF141414),
     ),
   ),
@@ -47,8 +48,12 @@ ThemeData lightTheme = ThemeData(
     style: ElevatedButton.styleFrom(
       backgroundColor: LightColor.primaryColor,
       foregroundColor: Color(0xFFFFFCFC),
+      minimumSize: Size.fromHeight(AppSizes.h52),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-      textStyle: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
+      textStyle: TextStyle(
+        fontWeight: FontWeight.w400,
+        fontSize: AppSizes.sp16,
+      ),
     ),
   ),
   textButtonTheme: TextButtonThemeData(
@@ -75,31 +80,31 @@ ThemeData lightTheme = ThemeData(
     bodyLarge: TextStyle(),
     bodyMedium: TextStyle(
       color: Color(0xFFFFFCFC),
-      fontSize: 16,
+      fontSize: AppSizes.sp16,
       fontWeight: FontWeight.w400,
     ),
 
     bodySmall: TextStyle(
       color: Color(0xFFFFFCFC),
-      fontSize: 14,
+      fontSize: AppSizes.sp14,
       fontWeight: FontWeight.w400,
     ),
 
     labelMedium: TextStyle(
       color: Color(0xFFFFFCFC),
-      fontSize: 14,
+      fontSize: AppSizes.sp14,
       fontWeight: FontWeight.w700,
     ),
 
     titleSmall: TextStyle(
       color: Color(0xFF141414),
-      fontSize: 12,
+      fontSize: AppSizes.sp12,
       fontWeight: FontWeight.w400,
     ),
     //   // for done task
     titleMedium: TextStyle(
       color: Color(0xFF141414),
-      fontSize: 16,
+      fontSize: AppSizes.sp16,
       fontWeight: FontWeight.w400,
     ),
   ),
@@ -131,7 +136,7 @@ ThemeData lightTheme = ThemeData(
     ),
     hintStyle: TextStyle(
       color: Color(0xFF9E9E9E),
-      fontSize: 16,
+      fontSize: AppSizes.sp16,
       fontWeight: FontWeight.w400,
     ),
   ),
