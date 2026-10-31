@@ -1,36 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/features/home/repos/news_repository.dart';
 
-import '../../core/data_source/remote_data/api_config.dart';
-import '../../core/data_source/remote_data/api_services.dart';
 import '../../core/enums/request_status_enum.dart';
 import 'models/news_article_model.dart';
 
 class HomeController with ChangeNotifier {
   List<NewsArticleModel> newsTopHeadlineList = [];
   List<NewsArticleModel> newsEverythingList = [];
-  final ApiServices apiServices = ApiServices();
   String? errorMessage;
   RequestStatusEnum everythingStatus = RequestStatusEnum.loading;
   RequestStatusEnum topHeadlineStatus = RequestStatusEnum.loading;
   String? selectedCategory;
+  NewsRepository newsRepository = NewsRepository();
 
   init() {
     _getTopHeadline();
     _getEverything();
   }
 
-  Future<void> _getTopHeadline({String? category}) async {
+  Future<void> _getTopHeadline({String? category = "general"}) async {
     try {
       topHeadlineStatus = RequestStatusEnum.loading;
-      Map<String, dynamic> result = await apiServices.get(
-        ApiConfig.topHeadlines,
-        params: {"country": "us", "category": category},
+      newsTopHeadlineList = await newsRepository.getTopHeadline(
+        category: category,
       );
-
-      newsTopHeadlineList = (result["articles"] as List)
-          .map((e) => NewsArticleModel.fromMap(e))
-          .toList();
-
       topHeadlineStatus = RequestStatusEnum.loaded;
       errorMessage = null;
     } catch (e) {
@@ -42,14 +35,7 @@ class HomeController with ChangeNotifier {
 
   Future<void> _getEverything() async {
     try {
-      Map<String, dynamic> result = await apiServices.get(
-        ApiConfig.everything,
-        params: {"q": "news"},
-      );
-
-      newsEverythingList = (result["articles"] as List)
-          .map((e) => NewsArticleModel.fromMap(e))
-          .toList();
+      newsEverythingList = await newsRepository.getEverything();
       everythingStatus = RequestStatusEnum.loaded;
       errorMessage = null;
     } catch (e) {
