@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:news_app/features/home/repos/news_repository.dart';
 
 import '../../core/enums/request_status_enum.dart';
+import '../../core/mixins/safe_notify_mixin.dart';
 import 'models/news_article_model.dart';
 
-class HomeController with ChangeNotifier {
+class HomeController with ChangeNotifier, SafeNotifyMixin {
   List<NewsArticleModel> newsTopHeadlineList = [];
   List<NewsArticleModel> newsEverythingList = [];
   String? errorMessage;
   RequestStatusEnum everythingStatus = RequestStatusEnum.loading;
   RequestStatusEnum topHeadlineStatus = RequestStatusEnum.loading;
   String? selectedCategory;
+
   NewsRepository newsRepository = NewsRepository();
 
   init() {
@@ -30,7 +32,7 @@ class HomeController with ChangeNotifier {
       topHeadlineStatus = RequestStatusEnum.error;
       errorMessage = e.toString();
     }
-    notifyListeners();
+    safeNotify();
   }
 
   Future<void> _getEverything() async {
@@ -42,12 +44,12 @@ class HomeController with ChangeNotifier {
       everythingStatus = RequestStatusEnum.error;
       errorMessage = e.toString();
     }
-    notifyListeners();
+    safeNotify();
   }
 
   void updateSelectedCategory(String category) {
     selectedCategory = category;
     _getTopHeadline(category: selectedCategory);
-    notifyListeners();
+    safeNotify();
   }
 }
