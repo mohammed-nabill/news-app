@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/features/home/repos/news_repository.dart';
 
 import '../../core/enums/request_status_enum.dart';
 import '../../core/mixins/safe_notify_mixin.dart';
+import '../../core/repos/news_repository.dart';
 import 'models/news_article_model.dart';
 
 class HomeController with ChangeNotifier, SafeNotifyMixin {

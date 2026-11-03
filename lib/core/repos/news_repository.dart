@@ -1,6 +1,6 @@
 import '../../../core/data_source/remote_data/api_config.dart';
 import '../../../core/data_source/remote_data/api_services.dart';
-import '../models/news_article_model.dart';
+import '../../features/home/models/news_article_model.dart';
 
 class NewsRepository {
   final ApiServices apiServices = ApiServices();
@@ -15,6 +15,7 @@ class NewsRepository {
         .map((e) => NewsArticleModel.fromMap(e))
         .toList();
   }
+
   Future<List<NewsArticleModel>> getEverything() async {
     Map<String, dynamic> result = await apiServices.get(
       ApiConfig.everything,
@@ -24,6 +25,5 @@ class NewsRepository {
     return (result["articles"] as List)
         .map((e) => NewsArticleModel.fromMap(e))
         .toList();
-
   }
 }
